@@ -1,0 +1,9 @@
+.selected{
+    color: red;
+    background-color: black;
+    size: 50px;
+}
+
+.tdRow{
+    border: 1px;
+}
