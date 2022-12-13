@@ -25,7 +25,7 @@
 
 .allForm{
     border: 2px;
-    font-size: 20px;
+    font-size: 15px;
     width: 100px;
     border: 1px solid rgb(0, 0, 0);
     
@@ -33,7 +33,7 @@
 
 .tdallForm{
     border: 2px;
-    font-size: 20px;
+    font-size: 15px;
     width: 100px;
     border: 1px solid rgb(0, 0, 0);
     border-bottom: 1px solid black;

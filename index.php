@@ -31,9 +31,11 @@
     </header>
     <main>
     <div id="product_menu"><?php 
-        echo '<a href=/ '; // начало ссылки ВСЯ ТАБЛИЦА УМНОЖНЕНИЯ
         if(isset($_GET['html_type']) ) 
-                echo '?html_type='.$_GET['html_type']; 
+            echo '<a href=?html_type='.$_GET['html_type'];
+        else
+        echo '<a href=/'; // начало ссылки ВСЯ ТАБЛИЦА УМНОЖНЕНИЯ
+         
         if( !isset($_GET['content']) ) // если в скрипт НЕ был передан параметр content 
             echo ' class="selected"'; // ссылка выделяется через CSS-класс
         echo '  >Вся таблица умножения</a><br>'; // конец ссылки
