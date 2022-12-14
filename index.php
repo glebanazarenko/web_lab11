@@ -59,6 +59,7 @@ else
     outDivForm(); // выводим таблицу умножения в блочной форме
 
 
+
 // функция ВЫВОДИТ ТАБЛИЦУ УМНОЖЕНИЯ В ТАБЛИЧНОЙ ФОРМЕ
 function outTableForm() 
 { 
@@ -73,6 +74,7 @@ function outTableForm()
             // столбца умножения на $i (на 4, если $i==4) 
             } 
             echo '</table>'; 
+            footer_big();
         } 
         
     else 
@@ -80,6 +82,7 @@ function outTableForm()
             echo '<table class="tdForm">'; // оформляем таблицу в табличной форме
             outRowtd( $_GET['content'] ); // выводим выбранный в меню столбец
             echo '</table>'; 
+            footer_small();
         }
 } 
 
@@ -92,15 +95,19 @@ function outDivForm ()
         { 
         for($i=2; $i<10; $i++) // цикл со счетчиком от 2 до 9
             { 
+            echo '<div class="allForm">';
             outRow( $i ); // вызывем функцию, формирующую содержание
             // столбца умножения на $i (на 4, если $i==4) 
+            echo '</div>';
             } 
+            footer_big();
         } 
     else 
         { 
         echo '<div class="blockForm">'; // оформляем таблицу в блочной форме
         outRow( $_GET['content'] ); // выводим выбранный в меню столбец
         echo '</div>'; 
+        footer_small();
         } 
 } 
 
@@ -112,10 +119,10 @@ function outRow ( $n )
     {
         if($i*$n <= 9){
 
-            echo '<div class="allForm"><a href=?content='.$n.'>'.$n.'</a> x <a href=?content='.$i.'>'.$i.'</a> = <a href=?content='.($i*$n).'>'.($i*$n).'</a></div>'; // выводим строку столбца с тегом
+            echo '<a href=?content='.$n.'>'.$n.'</a> x <a href=?content='.$i.'>'.$i.'</a> = <a href=?content='.($i*$n).'>'.($i*$n).'</a><br>'; // выводим строку столбца с тегом
         }
         else{
-            echo '<div class="allForm"><a href=?content='.$n.'>'.$n.'</a> x <a href=?content='.$i.'>'.$i.'</a> = '.($i*$n).'</div>'; // выводим строку столбца с тегом
+            echo '<a href=?content='.$n.'>'.$n.'</a> x <a href=?content='.$i.'>'.$i.'</a> = '.($i*$n).'<br>'; // выводим строку столбца с тегом
         }
     }     
 } 
@@ -142,10 +149,10 @@ function outRowtd ( $n )
         }
     }
 }
-?>
 
-    </main>
-    <footer><?php
+function footer_big(){
+    echo'</main>
+    <footer><div style = "position: absolute; left: 0%;top:1500px; width: 100%; height: 30px; color:black">';
     //echo''.$_GET['html_type'].'<br>';
     if( !isset($_GET['html_type']) || $_GET['html_type'] === 'TABLE') 
         $s='Табличная верстка. '; // строка с информацией 
@@ -155,7 +162,29 @@ function outRowtd ( $n )
         $s.='Таблица умножения полностью. '; 
     else 
         $s.='Столбец таблицы умножения на '.$_GET['content']. '. '; 
-    echo $s.date('d.Y.M h:i:s'); ?>
-    </footer>
+    echo $s.date('d.Y.M h:i:s');
+    echo'
+    </footer>';
+}
+
+function footer_small(){
+    echo'</main>
+    <footer><div style = "position: absolute; left: 0%;top:900px; width: 100%; height: 20%; color:black">';
+    //echo''.$_GET['html_type'].'<br>';
+    if( !isset($_GET['html_type']) || $_GET['html_type'] === 'TABLE') 
+        $s='Табличная верстка. '; // строка с информацией 
+    else 
+        $s='Блочная верстка. '; 
+    if( !isset($_GET['content']) ) 
+        $s.='Таблица умножения полностью. '; 
+    else 
+        $s.='Столбец таблицы умножения на '.$_GET['content']. '. '; 
+    echo $s.date('d.Y.M h:i:s');
+    echo'
+    </footer>';
+}
+?>
+
+    
 </body>
 </html>
